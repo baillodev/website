@@ -17,9 +17,9 @@ export function SQlite({
         >
             <defs>
                 <linearGradient x1="57.6615627%" y1="2.04644676%" x2="57.6615584%" y2="94.4387516%" id="linearGradient-1">
-                    <stop stop-color="#97D9F6" offset="0%"></stop>
-                    <stop stop-color="#0F80CC" offset="92.024499%"></stop>
-                    <stop stop-color="#0F80CC" offset="100%"></stop>
+                    <stop stopColor="#97D9F6" offset="0%"></stop>
+                    <stop stopColor="#0F80CC" offset="92.024499%"></stop>
+                    <stop stopColor="#0F80CC" offset="100%"></stop>
                 </linearGradient>
             </defs>
             <g>

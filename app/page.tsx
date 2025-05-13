@@ -46,7 +46,7 @@ export default function Page() {
               </h2>
 
               <p>
-                Spécialisé en <Badge variant="secondary">Django</Badge>, <Badge variant="secondary">Next.js</Badge> et <Badge variant="secondary" >Expo</Badge>. Je crée des applications modernes, intuitives et performantes. Passionné par l'IA, je m'efforce d'intégrer des technologies de pointe dans mes projets pour repousser les limites du possible.
+                Spécialisé en <Badge variant="secondary">Django</Badge>, <Badge variant="secondary">Next.js</Badge> et <Badge variant="secondary" >Expo</Badge>. Je crée des applications modernes, intuitives et performantes. Passionné par l{"'"}IA, je m{"'"}efforce d{"'"}intégrer des technologies de pointe dans mes projets pour repousser les limites du possible.
               </p>
 
               <div className="mt-5 flex gap-5">
@@ -71,7 +71,7 @@ export default function Page() {
 
             <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-10">
               {skillsItems.map(skill => (
-                <Card>
+                <Card key={skill.title}>
                   <CardHeader>
                     <div>{skill.icon}</div>
                     <CardTitle>{skill.title}</CardTitle>

@@ -24,7 +24,7 @@ export function Footer() {
                 <div className="grid grid-cols-1 md:grid-cols-3 gap-10">
                     <div>
                         <Logo />
-                        <p className="max-w-sm text-sm md:text-base leading-10 mt-5">Passionné par le développement et l'intelligence artificielle.</p>
+                        <p className="max-w-sm text-sm md:text-base leading-10 mt-5">Passionné par le développement et l{"'"}intelligence artificielle.</p>
                     </div>
                     <div className="hidden md:flex flex-col items-start justify-start gap-4">
                         {menuItems.map(menuItem => (
