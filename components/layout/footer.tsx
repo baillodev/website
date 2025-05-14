@@ -7,7 +7,7 @@ import {
 } from "@/components/ui/navigation-menu";
 import { Logo } from "./logo";
 import Wrapper from "./wrapper";
-import { menuItems } from "@/lib/menui-items";
+import { menuItems } from "@/data/menui-items";
 import Link from "next/link";
 import { Facebook } from "../icons/facebook";
 import { Instagram } from "../icons/instagram";

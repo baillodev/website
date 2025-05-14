@@ -20,7 +20,7 @@ type skillsTypes = {
   icon: React.ReactNode;
   title: string;
   description: string;
-  category: 'Langage de programmation' | 'Framework Frontend' | 'Framework Backend' | 'Base de données' | 'Outils de développement' | 'UI/UX' | 'Cloud' | 'Mobile' | 'AI';
+  category: 'Langage' | 'Frontend' | 'Backend' | 'DB' | 'Tools' | 'UI/UX' | 'OS' | 'Mobile' | 'AI';
 };
 
 export const skillsItems: skillsTypes[] = [
@@ -28,70 +28,70 @@ export const skillsItems: skillsTypes[] = [
     icon: <Typescript size={64} />,
     title: "TypeScript",
     description: "Surcouche de JavaScript avec typage statique pour un code plus sûr et maintenable.",
-    category: 'Langage de programmation'
+    category: 'Langage'
   },
   {
     icon: <Python size={64} />,
     title: "Python",
     description: "Langage polyvalent utilisé pour le web, l'automatisation et l'IA.",
-    category: 'Langage de programmation'
+    category: 'Langage'
   },
 
   {
     icon: <Nextjs size={64} />,
     title: "Next.js",
     description: "Framework React pour le rendu côté serveur et l'optimisation SEO.",
-    category: 'Framework Frontend'
+    category: 'Frontend'
   },
   {
     icon: <React size={64} />,
     title: "React",
     description: "Librairie JavaScript pour créer des interfaces utilisateur dynamiques.",
-    category: 'Framework Frontend'
+    category: 'Frontend'
   },
   {
     icon: <Tailwind size={64} />,
     title: "Tailwind CSS",
     description: "Framework CSS utilitaire pour styliser rapidement.",
-    category: 'Framework Frontend'
+    category: 'Frontend'
   },
 
   {
     icon: <Django size={64} />,
     title: "Django",
     description: "Framework Python pour créer des applications web robustes et sécurisées.",
-    category: 'Framework Backend'
+    category: 'Backend'
   },
 
   {
     icon: <Postgresql size={64} />,
     title: "PostgreSQL",
     description: "Base de données relationnelle open source ultra-puissante.",
-    category: 'Base de données'
+    category: 'DB'
   },
   {
     icon: <Prisma size={64} />,
     title: "Prisma",
     description: "ORM moderne pour gérer les bases de données SQL avec TypeScript.",
-    category: 'Base de données'
+    category: 'DB'
   },
   {
     icon: <Firebase size={64} />,
     title: "Firebase",
     description: "Plateforme complète de Google avec base de données temps réel.",
-    category: 'Base de données'
+    category: 'DB'
   },
   {
     icon: <Neon size={64} />,
     title: "Neon",
     description: "PostgreSQL cloud-native avec scalabilité optimale.",
-    category: 'Base de données'
+    category: 'DB'
   },
   {
     icon: <SQlite size={64} />,
     title: "SQLite",
     description: "Base de données légère pour les apps mobiles.",
-    category: 'Base de données'
+    category: 'DB'
   },
 
   {
@@ -112,19 +112,19 @@ export const skillsItems: skillsTypes[] = [
     icon: <Github size={64} />,
     title: "GitHub",
     description: "Plateforme de collaboration et gestion de version.",
-    category: 'Outils de développement'
+    category: 'Tools'
   },
   {
     icon: <Postman size={64} />,
     title: "Postman",
     description: "Outil pour tester et documenter les API.",
-    category: 'Outils de développement'
+    category: 'Tools'
   },
   {
     icon: <Linux size={64} />,
     title: "Linux",
     description: "Système d'exploitation open source pour le développement.",
-    category: 'Outils de développement'
+    category: 'OS'
   },
 
   {

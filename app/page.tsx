@@ -21,7 +21,7 @@ import {
   CarouselNext,
   CarouselPrevious,
 } from "@/components/ui/carousel"
-import { skillsItems } from "@/lib/skills";
+import { skillsItems } from "@/data/skills";
 
 export default function Page() {
   return (
@@ -69,20 +69,21 @@ export default function Page() {
           <Wrapper className="py-16">
             <h2 className="font-audiowide font-bold text-2xl md:text-4xl text-secondary mb-10">Compétences</h2>
 
-            <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-10">
-              {skillsItems.map(skill => (
+            <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 p-4">
+              {skillsItems.map((skill) => (
                 <Card key={skill.title}>
                   <CardHeader>
-                    <div>{skill.icon}</div>
+                    <div className="mb-4">{skill.icon}</div>
                     <CardTitle>{skill.title}</CardTitle>
-                    <CardDescription>{skill.description}</CardDescription>
+                    <CardDescription className="mt-2 text-xs md:text-sm">{skill.description}</CardDescription>
                   </CardHeader>
                   <CardFooter>
-                    <p>{skill.category}</p>
+                    <Badge variant="secondary">{skill.category}</Badge>
                   </CardFooter>
                 </Card>
               ))}
             </div>
+
 
           </Wrapper>
 

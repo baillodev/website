@@ -14,7 +14,7 @@ import { useEffect, useState } from "react";
 import Wrapper from "./wrapper";
 import Link from "next/link";
 import { Logo } from "./logo";
-import { menuItems } from "@/lib/menui-items";
+import { menuItems } from "@/data/menui-items";
 
 
 
