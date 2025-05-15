@@ -1,11 +1,4 @@
 "use client"
-
-import Wrapper from "@/components/layout/wrapper";
-import { Badge } from "@/components/ui/badge";
-import { buttonVariants } from "@/components/ui/button";
-import Image from "next/image";
-import Link from "next/link";
-import { ReactTyped } from "react-typed";
 import {
   Card,
   CardContent,
@@ -21,10 +14,60 @@ import {
   CarouselNext,
   CarouselPrevious,
 } from "@/components/ui/carousel"
+import {
+  Form,
+  FormControl,
+  FormField,
+  FormItem,
+  FormMessage,
+} from "@/components/ui/form"
+import { Input } from "@/components/ui/input"
+import { zodResolver } from "@hookform/resolvers/zod"
+import { useForm } from "react-hook-form"
+import { z } from "zod"
+import { Button } from "@/components/ui/button"
+import Wrapper from "@/components/layout/wrapper";
+import { Badge } from "@/components/ui/badge";
+import { buttonVariants } from "@/components/ui/button";
+import Image from "next/image";
+import Link from "next/link";
+import { ReactTyped } from "react-typed";
 import { skillsItems } from "@/data/skills";
 import { projects } from "@/data/projects";
+import { Filter } from "lucide-react";
+import { Textarea } from "@/components/ui/textarea"
+
+const formSchema = z.object({
+  name: z.string().min(2, {
+    message: "Le nom doit comporter au moins 2 caractères.",
+  }),
+  email: z.string().email("Le format de l'adresse e-mail est invalide"),
+  message: z
+    .string()
+    .min(10, {
+      message: "Le message doit comporter au moins 10 caractères.",
+    })
+    .max(200, {
+      message: "Le message ne doit pas dépasser 200 caractères.",
+    }),
+})
+
 
 export default function Page() {
+  const form = useForm<z.infer<typeof formSchema>>({
+    resolver: zodResolver(formSchema),
+    defaultValues: {
+      name: "",
+      email: "",
+      message: ""
+    },
+  })
+
+  function onSubmit(values: z.infer<typeof formSchema>) {
+    console.log(values)
+    form.reset()
+  }
+
   return (
     <>
       <main className="mt-[65px]">
@@ -46,7 +89,7 @@ export default function Page() {
                 />
               </h2>
 
-              <p>
+              <p className="text-sm md:text-base leading-8">
                 Spécialisé en <Badge variant="secondary">Django</Badge>, <Badge variant="secondary">Next.js</Badge> et <Badge variant="secondary" >Expo</Badge>. Je crée des applications modernes, intuitives et performantes. Passionné par l{"'"}IA, je m{"'"}efforce d{"'"}intégrer des technologies de pointe dans mes projets pour repousser les limites du possible.
               </p>
 
@@ -66,9 +109,12 @@ export default function Page() {
           </Wrapper>
         </section>
 
-        <section id="skills" className="scroll-mt-[65px] min-h-svh bg-foreground/5">
+        <section id="skills" className="scroll-mt-[65px] bg-foreground/5">
           <Wrapper className="py-16">
-            <h2 className="font-audiowide font-bold text-2xl md:text-4xl text-secondary mb-10">Compétences</h2>
+            <div className="flex justify-between items-center">
+              <h2 className="font-audiowide font-bold text-2xl md:text-4xl text-secondary mb-10">Compétences</h2>
+              <Filter />
+            </div>
 
             <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 p-4">
               {skillsItems.map((skill) => (
@@ -90,7 +136,7 @@ export default function Page() {
 
         </section>
 
-        <section id="projects" className="scroll-mt-[65px] min-h-svh">
+        <section id="projects" className="scroll-mt-[65px]">
           <Wrapper className="py-16">
             <h2 className="font-audiowide font-bold text-2xl md:text-4xl text-secondary text-center mb-10">
               Projets
@@ -147,6 +193,53 @@ export default function Page() {
           <Wrapper className="py-16">
             <h2 className="font-audiowide font-bold text-2xl md:text-4xl text-secondary mb-10">Me contacter</h2>
 
+            <Form {...form}>
+              <form onSubmit={form.handleSubmit(onSubmit)} className="w-full max-w-md space-y-8">
+                <FormField
+                  control={form.control}
+                  name="name"
+                  render={({ field }) => (
+                    <>
+                      <FormItem>
+                        <FormControl>
+                          <Input placeholder="Entrez votre nom complet" {...field} />
+                        </FormControl>
+                        <FormMessage />
+                      </FormItem>
+                    </>
+                  )}
+                />
+                <FormField
+                  control={form.control}
+                  name="email"
+                  render={({ field }) => (
+                    <>
+                      <FormItem>
+                        <FormControl>
+                          <Input placeholder="Entrez votre email" type="email" {...field} />
+                        </FormControl>
+                        <FormMessage />
+                      </FormItem>
+                    </>
+                  )}
+                />
+                <FormField
+                  control={form.control}
+                  name="message"
+                  render={({ field }) => (
+                    <>
+                      <FormItem>
+                        <FormControl>
+                          <Textarea placeholder="Ecrivez votre message..." className="resize-none" {...field} />
+                        </FormControl>
+                        <FormMessage />
+                      </FormItem>
+                    </>
+                  )}
+                />
+                <Button type="submit">Envoyer</Button>
+              </form>
+            </Form>
           </Wrapper>
         </section>
       </main >

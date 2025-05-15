@@ -7,7 +7,7 @@ import {
     NavigationMenuList,
     navigationMenuTriggerStyle,
 } from "@/components/ui/navigation-menu";
-import { Moon, Sun } from "lucide-react";
+import { Menu, Moon, Sun, X } from "lucide-react";
 import { Button } from "../ui/button";
 import { useTheme } from "next-themes";
 import { useEffect, useState } from "react";
@@ -20,6 +20,7 @@ import { menuItems } from "@/data/menui-items";
 
 export function Header() {
     const { theme, setTheme } = useTheme()
+    const [isOpen, setIsOpen] = useState(false)
     const [mounted, setMounted] = useState(false)
 
     useEffect(() => {
@@ -49,17 +50,33 @@ export function Header() {
                     </NavigationMenuList>
                 </NavigationMenu>
 
-                <Button
-                    onClick={() => setTheme(theme === "dark" ? "light" : "dark")}
-                    variant="outline"
-                    size="icon"
-                >
-                    {theme === "dark" ? (
-                        <Sun />
-                    ) : (
-                        <Moon />
-                    )}
-                </Button>
+                <div className="flex justify-center items-center gap-2">
+                    <Button
+                        onClick={() => setTheme(theme === "dark" ? "light" : "dark")}
+                        variant="outline"
+                        size="icon"
+                    >
+                        {theme === "dark" ? (
+                            <Sun />
+                        ) : (
+                            <Moon />
+                        )}
+                    </Button>
+
+                    <Button
+                        onClick={() => setIsOpen(!isOpen)}
+                        variant="ghost"
+                        size="icon"
+                        className="md:hidden"
+                    >
+                        {!isOpen ? (
+                            <Menu className="size-6" />
+                        ) : (
+                            <X className="size-6" />
+                        )}
+                    </Button>
+
+                </div>
             </Wrapper>
         </header>
     );

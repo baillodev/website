@@ -15,7 +15,7 @@ import { Discord } from "../icons/discord";
 import { Github } from "../icons/github";
 import { Linkedin } from "../icons/linkedin";
 import { X } from "../icons/x";
-import { buttonVariants } from "../ui/button";
+import { Button, buttonVariants } from "../ui/button";
 
 export function Footer() {
     return (
@@ -48,26 +48,6 @@ export function Footer() {
                     <p className="text-xs md:text-sm">Copyright © 2025 - tous droits réservés</p>
                 </div>
             </Wrapper>
-
-            <div className="fixed bg-background w-full py-4 bottom-0 md:hidden z-50">
-                <Wrapper className="h-full flex justify-center items-center">
-                    <NavigationMenu>
-                        <NavigationMenuList className="flex-wrap">
-                            {menuItems.map(menuItem => (
-                                <NavigationMenuItem key={menuItem.path}>
-                                    <NavigationMenuLink className={navigationMenuTriggerStyle()} asChild>
-                                        <Link href={`#${menuItem.path}`} className="text-xs">
-                                            {menuItem.name}
-                                        </Link>
-
-                                    </NavigationMenuLink>
-
-                                </NavigationMenuItem>
-                            ))}
-                        </NavigationMenuList>
-                    </NavigationMenu>
-                </Wrapper>
-            </div>
         </footer>
     )
 }
