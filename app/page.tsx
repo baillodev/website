@@ -22,6 +22,7 @@ import {
   CarouselPrevious,
 } from "@/components/ui/carousel"
 import { skillsItems } from "@/data/skills";
+import { projects } from "@/data/projects";
 
 export default function Page() {
   return (
@@ -96,25 +97,40 @@ export default function Page() {
             </h2>
             <Carousel
               opts={{
-                align: "start",
+                align: "center",
               }}
-              className="w-[90%] mx-auto"
+              className="w-full max-w-md mx-auto"
             >
               <CarouselContent>
-                {Array.from({ length: 5 }).map((_, index) => (
-                  <CarouselItem key={index} className="md:basis-1/2 lg:basis-1/3">
-                    <div className="p-1">
-                      <Card>
-                        <CardContent className="flex aspect-square items-center justify-center p-6">
-                          <span className="text-3xl font-semibold">{index + 1}</span>
+                {projects.map((project, index) => (
+                  <CarouselItem key={index}>
+                    <Card className="group relative aspect-video overflow-hidden">
+                      <Image
+                        src={project.image}
+                        alt={project.title}
+                        fill
+                        className="object-contain blur-sm group-hover:blur-none transition-all duration-500"
+                        
+                      />
+                      <div className="absolute inset-0 bg-black/50 flex flex-col justify-center gap-2 text-gray-100 group-hover:opacity-0 transition-opacity duration-300">
+                        <CardHeader className="text-xl md:text-2xl font-bold">
+                          {project.title}
+                        </CardHeader>
+                        <CardContent className="text-xs md:text-sm leading-7">
+                          {project.description}
                         </CardContent>
-                      </Card>
-                    </div>
+                        <CardFooter>
+                          {project.technologies.map((tech, index) => (
+                            <Badge variant="secondary" className="mr-2">{tech}</Badge>
+                          ))}
+                        </CardFooter>
+                      </div>
+                    </Card>
                   </CarouselItem>
                 ))}
               </CarouselContent>
-              <CarouselPrevious />
-              <CarouselNext />
+              <CarouselPrevious className="hidden md:flex" />
+              <CarouselNext className="hidden md:flex" />
             </Carousel>
           </Wrapper>
 
@@ -134,7 +150,7 @@ export default function Page() {
 
           </Wrapper>
         </section>
-      </main>
+      </main >
     </>
   );
 }
