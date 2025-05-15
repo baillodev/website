@@ -1,10 +1,3 @@
-import {
-    NavigationMenu,
-    NavigationMenuItem,
-    NavigationMenuLink,
-    NavigationMenuList,
-    navigationMenuTriggerStyle,
-} from "@/components/ui/navigation-menu";
 import { Logo } from "./logo";
 import Wrapper from "./wrapper";
 import { menuItems } from "@/data/menui-items";
@@ -15,7 +8,7 @@ import { Discord } from "../icons/discord";
 import { Github } from "../icons/github";
 import { Linkedin } from "../icons/linkedin";
 import { X } from "../icons/x";
-import { Button, buttonVariants } from "../ui/button";
+import { buttonVariants } from "../ui/button";
 
 export function Footer() {
     return (
