@@ -110,7 +110,6 @@ export default function Page() {
                         alt={project.title}
                         fill
                         className="object-contain blur-sm group-hover:blur-none transition-all duration-500"
-                        
                       />
                       <div className="absolute inset-0 bg-black/50 flex flex-col justify-center gap-2 text-gray-100 group-hover:opacity-0 transition-opacity duration-300">
                         <CardHeader className="text-xl md:text-2xl font-bold">
@@ -121,7 +120,7 @@ export default function Page() {
                         </CardContent>
                         <CardFooter>
                           {project.technologies.map((tech, index) => (
-                            <Badge variant="secondary" className="mr-2">{tech}</Badge>
+                            <Badge key={index} variant="secondary" className="mr-2">{tech}</Badge>
                           ))}
                         </CardFooter>
                       </div>
