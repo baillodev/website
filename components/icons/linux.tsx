@@ -1,6 +1,6 @@
 type IconProps = {
     size?: number | string
-    color?: string
+    className?: string
 }
 
 export function Linux({
@@ -15,6 +15,7 @@ export function Linux({
             preserveAspectRatio="xMidYMid"
             {...props}
         >
+            <title>Linux</title>
             <defs>
                 <filter x="-50%" y="-50%" width="200%" height="200%" filterUnits="objectBoundingBox" id="filter-1">
                     <feOffset dx="0" dy="0" in="SourceAlpha" result="shadowOffsetOuter1"></feOffset>

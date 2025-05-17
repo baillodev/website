@@ -1,6 +1,6 @@
 type IconProps = {
     size?: number | string
-    color?: string
+    className?: string
 }
 
 export function Figma({
@@ -15,6 +15,7 @@ export function Figma({
             preserveAspectRatio="xMidYMid"
             {...props}
         >
+            <title>Figma</title>
             <g>
                 <path d="M64,384 C99.328,384 128,355.328 128,320 L128,256 L64,256 C28.672,256 0,284.672 0,320 C0,355.328 28.672,384 64,384 Z" fill="#0ACF83"></path>
                 <path d="M0,192 C0,156.672 28.672,128 64,128 L128,128 L128,256 L64,256 C28.672,256 0,227.328 0,192 Z" fill="#A259FF"></path>

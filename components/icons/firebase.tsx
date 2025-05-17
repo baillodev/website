@@ -1,6 +1,6 @@
 type IconProps = {
     size?: number | string
-    color?: string
+    className?: string
 }
 
 export function Firebase({
@@ -15,6 +15,7 @@ export function Firebase({
             preserveAspectRatio="xMidYMid"
             {...props}
         >
+            <title>Firebase</title>
             <defs>
                 <path d="M1.25273437,280.731641 L2.85834533,277.600858 L102.211177,89.0833546 L58.0613266,5.6082033 C54.3920011,-1.28304578 45.0741245,0.473674398 43.8699203,8.18789086 L1.25273437,280.731641 Z" id="path-1"></path>
                 <filter x="-50%" y="-50%" width="200%" height="200%" filterUnits="objectBoundingBox" id="filter-2">
@@ -33,10 +34,10 @@ export function Firebase({
             </defs>
             <g>
                 <path d="M0,282.99762 L2.12250746,280.0256 L102.527363,89.5119284 L102.739423,87.4951323 L58.478806,4.35817711 C54.7706269,-2.60604179 44.3313035,-0.845245771 43.1143483,6.95065473 L0,282.99762 Z" fill="#FFC24A"></path>
-                <g>
+                {/* <g>
                     <use fill="#FFA712" fillRule="evenodd" xlinkHref="#path-1"></use>
                     <use fill="black" fillOpacity="1" filter="url(#filter-2)" xlinkHref="#path-1"></use>
-                </g>
+                </g> */}
                 <path d="M135.004975,150.380704 L167.960199,116.629461 L134.995423,53.6993114 C131.866109,47.7425353 123.128817,47.7253411 120.032618,53.6993112 L102.421015,87.2880848 L102.421015,90.1487443 L135.004975,150.380704 Z" fill="#F4BD62"></path>
                 <g>
                     <use fill="#FFA50E" fillRule="evenodd" xlinkHref="#path-3"></use>

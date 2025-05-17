@@ -1,6 +1,6 @@
 type IconProps = {
     size?: number | string
-    color?: string
+    className?: string
 }
 
 export function Tailwind({
@@ -15,6 +15,7 @@ export function Tailwind({
             preserveAspectRatio="xMidYMid"
             {...props}
         >
+            <title>TailwindCSS</title>
             <defs>
                 <linearGradient x1="-2.77777778%" y1="32%" x2="100%" y2="67.5555556%" id="linearGradient-1">
                     <stop stopColor="#2298BD" offset="0%"></stop>

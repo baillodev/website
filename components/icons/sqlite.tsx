@@ -1,6 +1,6 @@
 type IconProps = {
     size?: number | string
-    color?: string
+    className?: string
 }
 
 export function SQlite({
@@ -15,6 +15,7 @@ export function SQlite({
             preserveAspectRatio="xMidYMid"
             {...props}
         >
+            <title>SQLite</title>
             <defs>
                 <linearGradient x1="57.6615627%" y1="2.04644676%" x2="57.6615584%" y2="94.4387516%" id="linearGradient-1">
                     <stop stopColor="#97D9F6" offset="0%"></stop>

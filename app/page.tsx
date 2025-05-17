@@ -34,8 +34,9 @@ import Link from "next/link";
 import { ReactTyped } from "react-typed";
 import { skillsItems } from "@/data/skills";
 import { projects } from "@/data/projects";
-import { Filter } from "lucide-react";
+import { Filter, Search, SquareArrowOutUpRight } from "lucide-react";
 import { Textarea } from "@/components/ui/textarea"
+import { cisco, coursera, odc } from "@/data/certifications"
 
 const formSchema = z.object({
   name: z.string().min(2, {
@@ -72,7 +73,8 @@ export default function Page() {
     <>
       <main className="mt-[65px]">
         <section id="home" className="scroll-mt-[65px]">
-          <Wrapper className="py-20 flex flex-col-reverse gap-y-20 md:flex-row">
+          <Wrapper className="relative py-20 flex flex-col-reverse gap-y-20 md:flex-row">
+            <div className="absolute inset-0 bg-gradient-to-br from-background via-background to-primary -z-10"></div>
             <div className="flex-1/2">
               <h1 className="font-audiowide font-extrabold text-2xl md:text-4xl bg-gradient-to-r from-primary to-secondary bg-clip-text text-transparent">Mamadou Baillo Diallo</h1>
               <h2 className="mt-2 mb-4 text-xl md:text-2xl font-bold text-secondary">
@@ -111,9 +113,13 @@ export default function Page() {
 
         <section id="skills" className="scroll-mt-[65px] bg-foreground/5">
           <Wrapper className="py-16">
-            <div className="flex justify-between items-center">
+            <div className="flex justify-between">
               <h2 className="font-audiowide font-bold text-2xl md:text-4xl text-secondary mb-10">Compétences</h2>
-              <Filter />
+
+              <div className="flex gap-4">
+                <Search />
+                <Filter />
+              </div>
             </div>
 
             <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 p-4">
@@ -130,67 +136,219 @@ export default function Page() {
                 </Card>
               ))}
             </div>
-
-
           </Wrapper>
 
         </section>
 
         <section id="projects" className="scroll-mt-[65px]">
-          <Wrapper className="py-16">
-            <h2 className="font-audiowide font-bold text-2xl md:text-4xl text-secondary text-center mb-10">
+          <Wrapper className="relative py-16">
+            <h2 className="font-audiowide font-bold text-2xl md:text-4xl text-secondary mb-10">
               Projets
             </h2>
-            <Carousel
-              opts={{
-                align: "center",
-              }}
-              className="w-full max-w-md mx-auto"
-            >
-              <CarouselContent>
-                {projects.map((project, index) => (
-                  <CarouselItem key={index}>
-                    <Card className="group relative aspect-video overflow-hidden">
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-4 p-4">
+              {projects.map((project) => (
+                <Card key={project.title}>
+                  <CardHeader>
+                    <div className="mb-4 relative aspect-video">
                       <Image
                         src={project.image}
                         alt={project.title}
                         fill
-                        className="object-contain blur-sm group-hover:blur-none transition-all duration-500"
+                        className="object-contain"
                       />
-                      <div className="absolute inset-0 bg-black/50 flex flex-col justify-center gap-2 text-gray-100 group-hover:opacity-0 transition-opacity duration-300">
-                        <CardHeader className="text-xl md:text-2xl font-bold">
-                          {project.title}
-                        </CardHeader>
-                        <CardContent className="text-xs md:text-sm leading-7">
-                          {project.description}
-                        </CardContent>
-                        <CardFooter>
-                          {project.technologies.map((tech, index) => (
-                            <Badge key={index} variant="secondary" className="mr-2">{tech}</Badge>
-                          ))}
-                        </CardFooter>
-                      </div>
-                    </Card>
-                  </CarouselItem>
-                ))}
-              </CarouselContent>
-              <CarouselPrevious className="hidden md:flex" />
-              <CarouselNext className="hidden md:flex" />
-            </Carousel>
+                    </div>
+                    <CardTitle>{project.title}</CardTitle>
+                    <CardDescription className="mt-2 text-xs md:text-sm">{project.description}</CardDescription>
+                  </CardHeader>
+                  <CardFooter className="flex-col items-stretch gap-2">
+                    <div className="flex justify-start">
+                      {project.technologies.map((tech, index) => (
+                        <Badge key={index} variant="secondary" className="mr-2">{tech}</Badge>
+                      ))}
+                    </div>
+                    <div className="flex justify-end">
+                      {project.websiteLink && (
+                        <a href={project.websiteLink} target="_blank" className={buttonVariants({ variant: "link", size: "lg" })}>
+                          Voir le site
+                          <SquareArrowOutUpRight />
+                        </a>
+                      )}
+                    </div>
+                  </CardFooter>
+                </Card>
+              ))}
+            </div>
           </Wrapper>
-
         </section>
 
-        <section id="about" className="scroll-mt-[65px] min-h-svh bg-foreground/5">
-          <Wrapper className="py-16">
+        <section id="about" className="scroll-mt-[65px] bg-foreground/5">
+          <Wrapper className="py-16 flex flex-col">
             <h2 className="font-audiowide font-bold text-2xl md:text-4xl text-secondary mb-10">A propos</h2>
 
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-10">
+              <div className="flex justify-center">
+                <div className="relative w-full max-w-md aspect-square">
+                  <Image
+                    src="/photo.jpg"
+                    alt="Portrait de Baillo"
+                    fill
+                    sizes="(max-width: 768px) 100vw, 50vw"
+                    className="object-cover rounded-xl mask-radial-at-top mask-radial-from-10%"
+                  />
+                  <Card className="absolute top-2 left-2">
+                    <CardContent>
+                      <code className="text-xs space-y-2">
+                        <div>
+                          <span className="text-primary">Name</span>:
+                          <span className="text-foreground ml-1 before:content-['\''] after:content-['\'']">Mamadou Baillo Diallo</span>
+                        </div>
+                        <div>
+                          <span className="text-primary font-semibold">Role</span>:
+                          <span className="text-foreground ml-1 before:content-['\''] after:content-['\'']">Web & Mobile Developer</span>
+                        </div>
+                        <div>
+                          <span className="text-primary font-semibold">Stack</span>:
+                          <span className="text-foreground ml-1">
+                            [{"'"}Django{"'"}, {"'"}Next.js{"'"}, {"'"}Expo{"'"}]</span>
+                        </div>
+                      </code>
+                    </CardContent>
+                  </Card>
+                </div>
+              </div>
+              <div className="space-y-4 w-full max:w-md md:h-[448px] md:overflow-y-auto hide-scrollbar">
+                <p className="leading-7 text-xs sm:text-sm italic">
+                  Je m{"'"}appelle Baillo, développeur web & mobile spécialisé en Django, Next.js et Expo. Ma mission ? Créer des expériences numériques modernes, fluides, accessibles — et surtout, mémorables. Chaque projet est pour moi l{"'"}occasion de mêler technicité et sens du détail.
+                </p>
+                <p className="leading-7 text-xs sm:text-sm italic">
+                  Actuellement étudiant en génie logiciel, je complète mon parcours académique avec des formations ciblées et des projets concrets, histoire de rester dans le game — et même un peu devant. Entre la théorie et la pratique, j{"'"}ai choisi de ne pas choisir : j’avance sur les deux fronts.
+                </p>
+                <p className="leading-7 text-xs sm:text-sm italic">
+                  Curieux de nature et passionné par l{"'"}intelligence artificielle, je m{"'"}efforce d{"'"}intégrer des technologies de pointe dans mes réalisations. Je suis convaincu que le code peut transformer des idées abstraites en solutions utiles et percutantes. Mon credo : rigueur, innovation, créativité.
+                </p>
+                <p className="leading-7 text-xs sm:text-sm italic">
+                  Mon parcours, je le construis pas à pas, ligne par ligne, en gardant toujours un œil sur ce qui se fait de mieux dans l’industrie. Mon ambition ? Tracer ma propre route, apprendre sans relâche, et coder avec une vision tournée vers demain.
+                </p>
+              </div>
+            </div>
+
+            <div className="mt-10">
+              <h3 className="font-audiowide font-semibold text-xl md:text-2xl text-secondary mb-16">
+                🎓 Formations
+              </h3>
+              <div className="flex flex-wrap gap-24">
+                <Carousel
+                  opts={{
+                    align: "start",
+                  }}
+                  orientation="vertical"
+                  className="w-full max-w-xs"
+                >
+                  <CarouselContent className="-mt-1 h-[200px]">
+                    {coursera.map((item, index) => (
+                      <CarouselItem key={index} className="pt-1 md:basis-1/2">
+                        <div className="p-1">
+                          <Card className="group relative aspect-video overflow-hidden">
+                            <Image
+                              src={item.image}
+                              alt={item.title}
+                              fill
+                              className="object-contain blur-sm group-hover:blur-none transition-all duration-500"
+                            />
+                            <div className="absolute inset-0 bg-black/50 flex flex-col justify-center gap-2 text-gray-100 group-hover:opacity-0 transition-opacity duration-300">
+                              <CardHeader className="text-base font-bold">
+                                {item.title}
+                              </CardHeader>
+                              <CardContent className="text-xs leading-6">
+                                {item.description}
+                              </CardContent>
+                            </div>
+                          </Card>
+                        </div>
+                      </CarouselItem>
+                    ))}
+                  </CarouselContent>
+                  <CarouselPrevious />
+                  <CarouselNext />
+                </Carousel>
+
+                <Carousel
+                  opts={{
+                    align: "start",
+                  }}
+                  orientation="vertical"
+                  className="w-full max-w-xs"
+                >
+                  <CarouselContent className="-mt-1 h-[200px]">
+                    {odc.map((item, index) => (
+                      <CarouselItem key={index} className="pt-1 md:basis-1/2">
+                        <div className="p-1">
+                          <Card className="group relative aspect-video overflow-hidden">
+                            <Image
+                              src={item.image}
+                              alt={item.title}
+                              fill
+                              className="object-contain blur-sm group-hover:blur-none transition-all duration-500"
+                            />
+                            <div className="absolute inset-0 bg-black/50 flex flex-col justify-center gap-2 text-gray-100 group-hover:opacity-0 transition-opacity duration-300">
+                              <CardHeader className="text-base font-bold">
+                                {item.title}
+                              </CardHeader>
+                              <CardContent className="text-xs leading-6">
+                                {item.description}
+                              </CardContent>
+                            </div>
+                          </Card>
+                        </div>
+                      </CarouselItem>
+                    ))}
+                  </CarouselContent>
+                  <CarouselPrevious />
+                  <CarouselNext />
+                </Carousel>
+
+                <Carousel
+                  opts={{
+                    align: "start",
+                  }}
+                  orientation="vertical"
+                  className="w-full max-w-xs"
+                >
+                  <CarouselContent className="-mt-1 h-[200px]">
+                    {cisco.map((item, index) => (
+                      <CarouselItem key={index} className="pt-1 md:basis-1/2">
+                        <div className="p-1">
+                          <Card className="group relative aspect-video overflow-hidden">
+                            <Image
+                              src={item.image}
+                              alt={item.title}
+                              fill
+                              className="object-contain blur-sm group-hover:blur-none transition-all duration-500"
+                            />
+                            <div className="absolute inset-0 bg-black/50 flex flex-col justify-center gap-2 text-gray-100 group-hover:opacity-0 transition-opacity duration-300">
+                              <CardHeader className="text-base font-bold">
+                                {item.title}
+                              </CardHeader>
+                              <CardContent className="text-xs leading-6">
+                                {item.description}
+                              </CardContent>
+                            </div>
+                          </Card>
+                        </div>
+                      </CarouselItem>
+                    ))}
+                  </CarouselContent>
+                  <CarouselPrevious />
+                  <CarouselNext />
+                </Carousel>
+              </div>
+            </div>
           </Wrapper>
         </section>
 
-        <section id="contact" className="scroll-mt-[65px] min-h-svh">
-
-          <Wrapper className="py-16">
+        <section id="contact" className="scroll-mt-[65px]">
+          <Wrapper className="relative py-16">
+            <div className="absolute inset-0 bg-gradient-to-bl from-primary via-background to-background -z-10"></div>
             <h2 className="font-audiowide font-bold text-2xl md:text-4xl text-secondary mb-10">Me contacter</h2>
 
             <Form {...form}>

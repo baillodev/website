@@ -2,9 +2,7 @@ import { Logo } from "./logo";
 import Wrapper from "./wrapper";
 import { menuItems } from "@/data/menui-items";
 import Link from "next/link";
-import { Facebook } from "../icons/facebook";
 import { Instagram } from "../icons/instagram";
-import { Discord } from "../icons/discord";
 import { Github } from "../icons/github";
 import { Linkedin } from "../icons/linkedin";
 import { X } from "../icons/x";
@@ -12,7 +10,7 @@ import { buttonVariants } from "../ui/button";
 
 export function Footer() {
     return (
-        <footer className="bg-muted">
+        <footer className="bg-muted text-muted-foreground">
             <Wrapper className="pt-10 pb-20">
                 <div className="grid grid-cols-1 md:grid-cols-3 gap-10">
                     <div>
@@ -27,17 +25,23 @@ export function Footer() {
                         ))}
                     </div>
 
-                    <div className="flex items-end gap-4">
-                        <Facebook size={20} />
-                        <Instagram size={20} className="text-secondary" />
-                        <Discord size={20} />
-                        <Github size={20} className="text-secondary" />
-                        <Linkedin size={20} />
-                        <X size={20} className="text-secondary" />
+                    <div className="flex items-end md:justify-end gap-4">
+                        <a href="https://www.instagram.com/baillodev?igsh=MWRjZWl6OWx5c241bw==" target="_blank" className="text-muted-foreground hover:text-secondary transition-colors duration-500">
+                            <Instagram size={20} />
+                        </a>
+                        <a href="https://x.com/baillodev?t=ciycUpAch3A3fDg7ceu1-Q&s=09" target="_blank" className="text-muted-foreground hover:text-secondary transition-colors duration-500">
+                            <X size={20} />
+                        </a>
+                        <a href="https://www.linkedin.com/in/mamadou-baillo-diallo-8243a1250/" target="_blank" className="text-muted-foreground hover:text-secondary transition-colors duration-500">
+                            <Linkedin size={20} />
+                        </a>
+                        <a href="https://github.com/baillodev/" target="_blank" className="text-muted-foreground hover:text-secondary transition-colors duration-500">
+                            <Github size={20} />
+                        </a>
                     </div>
                 </div>
 
-                <div className="border-t-2 pt-10 mt-10">
+                <div className="border-t border-foreground/15 pt-10 mt-10">
                     <p className="text-xs md:text-sm">Copyright © 2025 - tous droits réservés</p>
                 </div>
             </Wrapper>

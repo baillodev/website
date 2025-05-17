@@ -1,6 +1,6 @@
 type IconProps = {
     size?: number | string
-    color?: string
+    className?: string
 }
 
 export function Python({
@@ -15,6 +15,7 @@ export function Python({
             preserveAspectRatio="xMidYMid"
             {...props}
         >
+            <title>Python</title>
             <defs>
                 <linearGradient x1="12.9593594%" y1="12.0393928%" x2="79.6388325%" y2="78.2008538%" id="linearGradient-1">
                     <stop stopColor="#387EB8" offset="0%"></stop>
