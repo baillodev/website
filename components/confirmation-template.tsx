@@ -38,7 +38,7 @@ export const ConfirmationTemplate = ({ name }: { name: string }) => (
           <Hr className="border-t border-gray-300 my-6" />
 
           <Text className="text-sm text-gray-500">
-            Ce message est une confirmation automatique. Si vous n'avez pas envoyé de message via
+            Ce message est une confirmation automatique. Si vous n{"'"}avez pas envoyé de message via
             baillo.dev, vous pouvez ignorer ce mail.
           </Text>
 
