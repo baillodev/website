@@ -30,9 +30,11 @@ export function Header() {
     if (!mounted) return null
 
     return (
-        <header className="fixed inset-0 w-full h-16 border-b bg-foreground/5 backdrop-blur-md z-50">
+        <header className="fixed inset-0 w-full h-16 bg-foreground/5 backdrop-blur-md z-50">
             <Wrapper className="relative h-full flex items-center justify-between">
-                <Logo />
+                <Link href="">
+                    <Logo />
+                </Link>
 
                 <NavigationMenu className="hidden md:block">
                     <NavigationMenuList>

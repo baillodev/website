@@ -37,6 +37,7 @@ import { projects } from "@/data/projects";
 import { Filter, Search, SquareArrowOutUpRight } from "lucide-react";
 import { Textarea } from "@/components/ui/textarea"
 import { cisco, coursera, odc } from "@/data/certifications"
+import { useState } from "react"
 
 const formSchema = z.object({
   name: z.string().min(2, {
@@ -55,6 +56,9 @@ const formSchema = z.object({
 
 
 export default function Page() {
+  const [loading, setLoading] = useState(false)
+  const [status, setStatus] = useState<'success' | 'error' | null>(null);
+
   const form = useForm<z.infer<typeof formSchema>>({
     resolver: zodResolver(formSchema),
     defaultValues: {
@@ -64,17 +68,40 @@ export default function Page() {
     },
   })
 
-  function onSubmit(values: z.infer<typeof formSchema>) {
-    console.log(values)
-    form.reset()
+  async function onSubmit(values: z.infer<typeof formSchema>) {
+    setLoading(true)
+    setStatus(null)
+    try {
+      const response = await fetch("/api/send-email", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json"
+        },
+        body: JSON.stringify(values)
+      })
+
+      const result = await response.json()
+
+      if (!response.ok) throw new Error(result?.error || "Une erreur est survenue côté serveur.");
+
+      setStatus("success");
+      setTimeout(() => setStatus(null), 3000);
+    } catch (err) {
+      console.log(err)
+      setStatus("error");
+      setTimeout(() => setStatus(null), 3000);
+    } finally {
+      setLoading(false);
+      form.reset()
+    }
   }
 
   return (
     <>
-      <main className="mt-[65px]">
-        <section id="home" className="scroll-mt-[65px]">
+      <main className="mt-16">
+        <section id="home" className="scroll-mt-16">
           <Wrapper className="relative py-20 flex flex-col-reverse gap-y-20 md:flex-row">
-            <div className="absolute inset-0 bg-gradient-to-br from-background via-background to-primary -z-10"></div>
+            <div className="hidden md:block absolute inset-0 bg-gradient-to-br from-background via-background to-primary -z-10"></div>
             <div className="flex-1/2">
               <h1 className="font-audiowide font-extrabold text-2xl md:text-4xl bg-gradient-to-r from-primary to-secondary bg-clip-text text-transparent">Mamadou Baillo Diallo</h1>
               <h2 className="mt-2 mb-4 text-xl md:text-2xl font-bold text-secondary">
@@ -92,10 +119,10 @@ export default function Page() {
               </h2>
 
               <p className="text-sm md:text-base leading-8">
-                Spécialisé en <Badge variant="secondary">Django</Badge>, <Badge variant="secondary">Next.js</Badge> et <Badge variant="secondary" >Expo</Badge>. Je crée des applications modernes, intuitives et performantes. Passionné par l{"'"}IA, je m{"'"}efforce d{"'"}intégrer des technologies de pointe dans mes projets pour repousser les limites du possible.
+                Je crée des applications modernes, intuitives et performantes. Passionné par l{"'"}IA, je m{"'"}efforce d{"'"}intégrer des technologies de pointe dans mes projets pour repousser les limites du possible.
               </p>
 
-              <div className="mt-5 flex gap-5">
+              <div className="mt-5 flex flex-col sm:flex-row justify-start gap-5">
                 <Link href="#projects" className={buttonVariants({ size: "lg" })}>
                   Voir mes projets
                 </Link>
@@ -105,13 +132,13 @@ export default function Page() {
               </div>
             </div>
 
-            <div className="flex-1/2 flex items-center justify-center">
-              <Image src="/baillo.png" alt="Mamadou Baillo Diallo" width={320} height={320} className="rounded-full" />
+            <div className="hidden flex-1/2 md:flex items-center justify-center">
+              <Image src="/baillo.png" alt="Mamadou Baillo Diallo" width={280} height={280} className="rounded-full" />
             </div>
           </Wrapper>
         </section>
 
-        <section id="skills" className="scroll-mt-[65px] bg-foreground/5">
+        <section id="skills" className="scroll-mt-16 bg-foreground/5">
           <Wrapper className="py-16">
             <div className="flex justify-between">
               <h2 className="font-audiowide font-bold text-2xl md:text-4xl text-secondary mb-10">Compétences</h2>
@@ -124,7 +151,7 @@ export default function Page() {
 
             <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 p-4">
               {skillsItems.map((skill) => (
-                <Card key={skill.title}>
+                <Card key={skill.title} className="hover:border-primary">
                   <CardHeader>
                     <div className="mb-4">{skill.icon}</div>
                     <CardTitle>{skill.title}</CardTitle>
@@ -140,7 +167,7 @@ export default function Page() {
 
         </section>
 
-        <section id="projects" className="scroll-mt-[65px]">
+        <section id="projects" className="scroll-mt-16">
           <Wrapper className="relative py-16">
             <h2 className="font-audiowide font-bold text-2xl md:text-4xl text-secondary mb-10">
               Projets
@@ -181,7 +208,7 @@ export default function Page() {
           </Wrapper>
         </section>
 
-        <section id="about" className="scroll-mt-[65px] bg-foreground/5">
+        <section id="about" className="scroll-mt-16 bg-foreground/5">
           <Wrapper className="py-16 flex flex-col">
             <h2 className="font-audiowide font-bold text-2xl md:text-4xl text-secondary mb-10">A propos</h2>
 
@@ -346,7 +373,7 @@ export default function Page() {
           </Wrapper>
         </section>
 
-        <section id="contact" className="scroll-mt-[65px]">
+        <section id="contact" className="scroll-mt-16">
           <Wrapper className="relative py-16">
             <div className="absolute inset-0 bg-gradient-to-bl from-primary via-background to-background -z-10"></div>
             <h2 className="font-audiowide font-bold text-2xl md:text-4xl text-secondary mb-10">Me contacter</h2>
@@ -395,7 +422,11 @@ export default function Page() {
                     </>
                   )}
                 />
-                <Button type="submit">Envoyer</Button>
+                <Button type="submit">
+                  {loading ? 'Envoi en cours...' : 'Envoyer'}
+                </Button>
+                {status === 'success' && <p className="text-green-600">✅ Message envoyé avec succès !</p>}
+                {status === 'error' && <p className="text-destructive">❌ Une erreur est survenue.</p>}
               </form>
             </Form>
           </Wrapper>
