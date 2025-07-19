@@ -81,7 +81,7 @@ export function Header() {
                 </div>
 
                 <div
-                    className={`absolute md:hidden top-full right-4 mt-1 w-44 bg-muted rounded-md shadow-lg p-2 z-0
+                    className={`absolute md:hidden top-full right-4 mt-1 w-44 bg-muted/90 rounded-md shadow-lg p-2 z-0
                         ${isOpen ? "block" : "hidden"}
                     `}
                 >

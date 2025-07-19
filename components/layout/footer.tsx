@@ -10,7 +10,7 @@ import { buttonVariants } from "../ui/button";
 
 export function Footer() {
     return (
-        <footer className="bg-muted text-muted-foreground">
+        <footer className="bg-muted/50 text-muted-foreground">
             <Wrapper className="pt-10 pb-20">
                 <div className="grid grid-cols-1 md:grid-cols-3 gap-10">
                     <div>
