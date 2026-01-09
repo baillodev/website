@@ -4,6 +4,7 @@ import "./globals.css";
 import { Header } from "@/components/layout/header";
 import { Footer } from "@/components/layout/footer";
 import { ThemeProvider } from "next-themes";
+import { siteMetadata } from "@/lib/metadata";
 
 const jetbrainsMono = JetBrains_Mono({
   variable: "--font-jetbrainsMono",
@@ -16,10 +17,7 @@ const audiowide = Audiowide({
   subsets: ["latin"],
 });
 
-export const metadata: Metadata = {
-  title: "Mamadou Baillo Diallo | Portfolio",
-  description: "Portfolio de Mamadou Baillo Diallo, développeur web et mobile passionné par le développement et l'intelligence artificielle. Découvrez mes projets et mes compétences.",
-};
+export const metadata: Metadata = siteMetadata;
 
 export default function RootLayout({
   children,
