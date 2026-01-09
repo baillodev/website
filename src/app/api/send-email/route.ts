@@ -1,5 +1,5 @@
 import { NextRequest, NextResponse } from 'next/server';
-import { EmailTemplate } from '../../../components/email-template';
+import { EmailTemplate } from '@/components/email-template';
 import { resend } from '@/lib/resend';
 import { ConfirmationTemplate } from '@/components/confirmation-template';
 
