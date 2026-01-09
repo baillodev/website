@@ -33,7 +33,7 @@ export const siteMetadata: Metadata = {
     siteName: "BAILLODEV",
     images: [
       {
-        url: "/og-image.png",
+        url: "/images/og-image.png",
         width: 1200,
         height: 630,
         alt: "BAILLODEV — Portfolio",
@@ -48,6 +48,6 @@ export const siteMetadata: Metadata = {
     title: "Mamadou Baillo Diallo — Entrepreneur & AI Developer",
     description:
       "Portfolio and personal website of Mamadou Baillo Diallo.",
-    images: ["/og-image.png"],
+    images: ["/images/og-image.png"],
   },
 };
